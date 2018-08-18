@@ -37,7 +37,7 @@ public class CustomerBean implements Serializable {
 				rpta = cdao.insertar(customer);
 			}
 			if (rpta == 0 || rpta == 2) {
-				mensaje = "Validar";
+				mensaje = "Validar git";
 			}
 			this.listar();
 		} catch (Exception e) {
