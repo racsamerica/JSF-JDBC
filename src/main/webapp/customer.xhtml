@@ -1,0 +1,32 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html">
+
+<h:head></h:head>
+<h:body>
+
+	<h:form>
+
+		<h:panelGrid columns="2">
+
+			<h:outputLabel value="Código"
+				rendered="#{customerBean.customer.idCustomer > 0}" />
+			<h:inputText value="#{customerBean.customer.idCustomer}"
+				rendered="#{customerBean.customer.idCustomer> 0}" />
+
+			<h:outputLabel value="Cliente" />
+			<h:inputText value="#{customerBean.customer.nameCustomer}" />
+
+
+			<h:commandButton action="listCustomers"
+				actionListener="#{customerBean.insertarActualizar()}"
+				value="Aceptar" ajax="false" />
+			<h:commandButton action="listCustomers" value="Cancelar"
+				immediate="true" />
+
+		</h:panelGrid>
+	</h:form>
+</h:body>
+</html>

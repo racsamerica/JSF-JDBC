@@ -1,0 +1,57 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui">
+
+<h:head></h:head>
+<h:body>
+
+	<p:growl id="msj" autoUpdate="true" showDetail="true"
+		showSummary="true" />
+
+	<h:form>
+		<h:panelGrid columns="2">
+
+			<h:outputText value="Cliente" />
+
+
+			<p:selectOneMenu filter="true" filterMatchMode="contains"
+				value="#{phoneBean.customer}"
+				converter="omnifaces.SelectItemsConverter">
+				<f:selectItem itemLabel="--Seleccione--" itemValue="#{null}"
+					noSelectionOption="true" />
+				<f:selectItems value="#{customerBean.listaClientes}" var="cus"
+					itemLabel="#{cus.nameCustomer}" itemValue="#{cus}" />
+			</p:selectOneMenu>
+
+			<h:outputText value="Número" />
+			<p:inputMask value="#{phoneBean.phone.numberPhone}" maxlength="9"
+				mask="999999999" />
+			<p:commandButton actionListener="#{phoneBean.agregar()}"
+				value="Agregar" update="telefonos" />
+
+
+			<p:commandButton actionListener="#{phoneBean.insertar()}"
+				value="Insertar" update=":msj,tabla" />
+			<p:dataList id="telefonos" value="#{phoneBean.listaTelefonos}"
+				var="tel">
+				#{tel.numberPhone}
+			</p:dataList>
+		</h:panelGrid>
+
+
+		<p:dataTable id="tabla" value="#{phoneBean.listaTelefonos}" var="tel">
+			<p:column headerText="Customer">
+				<p:outputLabel value="#{tel.customer.nameCustomer}" />
+			</p:column>
+
+			<p:column headerText="Número">
+				<p:outputLabel value="#{tel.numberPhone}" />
+			</p:column>
+		</p:dataTable>
+
+	</h:form>
+</h:body>
+</html>
